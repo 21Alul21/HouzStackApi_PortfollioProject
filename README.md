@@ -2,7 +2,7 @@
 ----------
 
 This project is an open source project that integrates Machine Learning(ML) in API development, for predicting rent of houses in
-Nigeria, UK, India and Canada.
+Nigeria and the UK
 
 The ML model for this API project was built using datasets gotten from Kaggle.com.
 
