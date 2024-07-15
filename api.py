@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, render_template, flash
 import joblib
-import pandas as pd 
+import pandas as pd
+from forms import PredictionForm 
 
 
 app = Flask(__name__)
@@ -8,6 +9,8 @@ app = Flask(__name__)
 @app.route('/api/nigeria/predict', methods=['POST'], strict_slashes=False)
 def predict_nigeria():
     """ view that handles prediction of house rent in Nigeria """
+
+    form = PredictionForm()
 
     if request.method == 'POST':
         # handling json data from client side
@@ -20,10 +23,20 @@ def predict_nigeria():
             bedrooms = request.json.get('bedrooms', None) 
             bathrooms = request.json.get('bathroom', None)
             toilets = request.json.get('toilets', None)
+
+            # validating values
             if not serviced or not newly_built or not furnished or not bedrooms or not bathrooms or not toilets:
                 return jsonify({
                     'error': 'all input fields must be entered'
                 }), 422
+            
+            if type(bedrooms) != int or float or type(bathrooms) != int or float or type(toilets) != int or float:
+                return jsonify({
+                    'error': {
+                        'fields': ['bedrooms or bathrooms or toilets'],
+                        'message': 'fields must numbers'
+                    }
+                }), 422  
             
             # encoding inputs
         
@@ -67,7 +80,6 @@ def predict_nigeria():
 
         # handling form data from client side
         if request.form:
-            form = LoginForm()
             if form.validate_on_submit():
                 serviced = request.form.get('serviced', None)
                 newly_built = request.form.get('newly_built', None) 
@@ -77,7 +89,6 @@ def predict_nigeria():
                 toilets = request.form.get('toilets', None)
             
                 # encoding inputs
-                
                 if serviced == 'yes':
                     serviced = 1
                 else:
@@ -99,15 +110,14 @@ def predict_nigeria():
 
                 loaded_model = joblib.load('nigeria_model.joblib')
                 prediction = loaded_model.predict(df)
-                return render_template('success_nigeria.html', prediction, currency='Naira')
+                return render_template('success_nigeria.html', prediction=prediction, currency='Naira')
             
             except Exception:
-                flash('an exception occured, please try again') 
+                flash('an exception occured, please try again')
+
+            return render_template('success.html', prediction=prediction) 
             
 
-        
-
-    
     return render_template('home.html', form=form)
             
 

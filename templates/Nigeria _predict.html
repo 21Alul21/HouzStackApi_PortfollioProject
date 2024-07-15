@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Nigeria House Rent Prediction</h1>
+    <form action="">
+        {{ form.hidden_tag() }}
+
+        <!-- Form fields -->
+        {% if form.errors %}
+            <div> {{ form.errors.values() }} </div>
+        {% end if %}
+
+        {{ form.newly_built.label }}
+        {{ form.newly_built }}
+
+        {{ form.serviced.label }}
+        {{ form.serviced }}
+
+        {{ form.furnished.label }}
+        {{ form.furnished }}
+
+        {{ form.bedrooms.label }}
+        {{ form.bedrooms }}
+
+        {{ form.bathrooms.label }}
+        {{ form.bathrooms }}
+
+        {{ form.toilets.label }}
+        {{ form.toilets }}
+
+        <input type="submit" value="GET RENT PREDICTION">
+    </form>
+</body>
+</html>
