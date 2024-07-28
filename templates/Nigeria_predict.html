@@ -3,37 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Nigeria Prediction</title>
 </head>
-<body>
-    <h1>Nigeria House Rent Prediction</h1>
-    <form action="">
+
+
+<body class="">
+    <header>
+        <div class="header-div">
+            <a class= "logo" href="{{url_for('landing')}}">HOUZSTACK</a>
+        </div>
+    </header>
+    {% include 'flash.html' %}
+
+    <main>
+    
+    <div class="house-text">
+        <h1>Nigeria House Rent Prediction</h1>
+    </div>
+
+    <p style="font-weight: bolder; margin-top: 10px;">fill in your details below</p> <br>
+    
+
+    <form action="{{ url_for('nigeria_form_predict') }}" method="post">
         {{ form.hidden_tag() }}
 
         <!-- Form fields -->
         {% if form.errors %}
-            <div> {{ form.errors.values() }} </div>
-        {% end if %}
+                {% for field, error in form.errors.items() %}
+                   {% for err in error %}
+    
+                    <div style="padding: 5px; width: 30%; height: 30px; background-color: red; color: white; margin-bottom: 5px;"> {{ field }}: {{ err }} </div>
+    
+                   {% endfor %}
+               {% endfor %}
+                
+            {% endif %}
 
-        {{ form.newly_built.label }}
-        {{ form.newly_built }}
+   
 
-        {{ form.serviced.label }}
-        {{ form.serviced }}
 
-        {{ form.furnished.label }}
-        {{ form.furnished }}
+        {{ form.newly_built.label }} <br>
+        {{ form.newly_built(class='input_fields') }} <br><br>
 
-        {{ form.bedrooms.label }}
-        {{ form.bedrooms }}
+        {{ form.serviced.label }} <br>
+        {{ form.serviced(class='input_fields') }} <br><br>
 
-        {{ form.bathrooms.label }}
-        {{ form.bathrooms }}
+        {{ form.furnished.label }} <br>
+        {{ form.furnished(class='input_fields') }} <br><br>
 
-        {{ form.toilets.label }}
-        {{ form.toilets }}
+        {{ form.bedrooms.label }} <br>
+        {{ form.bedrooms(class='input_fields') }} <br><br>
 
-        <input type="submit" value="GET RENT PREDICTION">
+        {{ form.bathrooms.label }} <br>
+        {{ form.bathrooms(class='input_fields') }} <br><br>
+
+        {{ form.toilets.label(class='input_fields') }} <br>
+        {{ form.toilets(class='input_fields') }} <br><br>
+
+
+      
+
+        <input class="ng-pred-btn" type="submit" value="GET RENT PREDICTION">
     </form>
+
+    </main>
+
+    
 </body>
 </html>

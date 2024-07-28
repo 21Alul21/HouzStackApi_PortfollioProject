@@ -3,29 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
-<body>
+<body class="">
     
-    <header>HouzStack</header>
+    <div class="header-div">
+        <a  style="color: white; text-decoration: none;" class="logo" href="{{ url_for('landing') }}">HOUZSTACK</a>
+    </div>
     <main>
-        <h1>Welcome to the <br>
-        Houztack project
-        </h1>
-        <h3>
+        <div class="welcome-div"> 
+            <h1>
+                Welcome to the
+                HouzStack <br> project <br><br>
+            </h1>
+        </div>
+        
+        <p>
             A web service that provides prediction for <br>
             house rent, currently in Nigeria and the UK
-        </h3>
+        </p>
         <aside>
-            <div>
-                <h2>Select prediction service</h2>
-                <button><a href="">Nigeria</a></button>
-                <button><a href="">UK</a>
-                </button>
-
+            <div class="prediction">
+                <p class="prediction-text">Select prediction service</p>
+                <a href="{{url_for('nigeria')}}" class="prediction-button-nigeria">Nigeria</a> <br>
+                <a href="{{url_for('uk')}}" class="prediction-buttons-uk">England</a>
             </div>
-    </aside>
+        </aside>
     </main>
+    <div style="width: 80%; border-radius: 80px 0 80px 0 ; height: 40%; background-image: url(/static/images/pexels-expect-best-79873-323780.jpg); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
+    
 
 </body>
 </html>

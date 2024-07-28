@@ -1,0 +1,5 @@
+{% for message in get_flashed_messages() %}
+        <div style="width: 100%; height: 40px; padding: 10px; background-color: rgb(30, 148, 216); color: rgb(244, 249, 250);">
+            {{ message }}
+          </div>
+{% endfor %}
