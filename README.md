@@ -6,6 +6,6 @@ Nigeria and the UK
 
 The ML model for this API project was built using datasets gotten from Kaggle.com.
 
-The algorithm used for building the models is the catboost algorithm.
+The algorithm used for building the models is the xgboost algorithm.
 
 Each  prediction endpoint is linked to a specific ML model.
